@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4, #c71585);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    z-index: 2;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 35px;
+    font-size: 28px;
+    text-shadow: 2px 2px 5px #b03060;
+}
+
+.envelope {
+    position: relative;
+    width: 280px;
+    height: 180px;
+    background: #ffdae5;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px #8b2252;
+    transition: transform 0.4s;
+}
+
+.envelope:hover {
+    transform: translateY(-8px);
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 110px solid #ff8fab;
+    transform-origin: top;
+    transition: transform 0.8s;
+    z-index: 3;
+}
+
+.letter {
+    position: absolute;
+    width: 250px;
+    height: 155px;
+    background: #fffaf0;
+    left: 15px;
+    top: 10px;
+    border-radius: 5px;
+    padding: 20px 12px;
+    transition: transform 1s, height 1s;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.letter h2 {
+    color: #e75480;
+    margin-bottom: 12px;
+}
+
+.letter p {
+    color: #74334b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.heart {
+    position: absolute;
+    font-size: 35px;
+    top: 65px;
+    left: 122px;
+    z-index: 4;
+}
+
+.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.open .letter {
+    height: 390px;
+    transform: translateY(-230px);
+    z-index: 5;
+}
+
+.open .heart {
+    display: none;
+}
+
+.hint {
+    color: white;
+    margin-top: 30px;
+    font-size: 17px;
+}
+
+button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #fff0f5;
+    color: #d63384;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.floating-heart {
+    position: fixed;
+    bottom: -30px;
+    color: #fff0f5;
+    animation: fly 6s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media(max-height: 650px) {
+    .open .letter {
+        height: 330px;
+        transform: translateY(-180px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💗 A LETTER FOR YOU 💗</h1>
+
+    <div class="envelope" id="envelope"
+         onclick="openLetter()">
+
+        <div class="flap"></div>
+
+        <div class="letter">
+            <h2>Dear You ❤️</h2>
+
+            <p id="message"></p>
+        </div>
+
+        <div class="heart">❤️</div>
+    </div>
+
+    <p class="hint" id="hint">
+        💌 Nhấn vào phong thư để mở nhé!
+    </p>
+
+    <button onclick="openLetter()">
+        OPEN MY LETTER 💗
+    </button>
+
+</div>
+
+<script>
+
+// Lời nhắn có thể thay đổi tại đây
+const loveMessage = `
+Chào cậu Yến.
+Nếu mà cậu đọc được dòng này thì cậu có thể nán lại một chút không?
+Có một điều tớ muốn nói với cậu từ lâu...
+
+Tớ không biết bắt đầu từ đâu,
+Cậu còn nhớ năm lớp 7 chứ,
+Ngày đó, tớ đã rung động và đã thích cậu rồi.
+Nhưng tớ nghĩ đó chỉ là những cảm xúc vu vơ và
+nó không có thật. Và ngĩ tớ không xứng với cậu,
+và cố gắng quên nó đi
+Nhưng rồi ngày qua ngày, tớ không thể quên cậu được.
+Từng cử chỉ, hành động của câu dường như đã thấm sau và tiềm thức của tớ.
+
+Cảm ơn cậu vì đã xuất hiện trong những này tháng tươi đẹp,
+ngây ngô nhất của tớ
+và khiến những ngày bình thường
+trở nên đặc biệt hơn.
+
+Xin lỗi vì tớ không thể gặp mặt cậu để nói ra điều này nhưng...
+
+TỚ THÍCH CẬU! ❤️
+
+CẬU ĐỒNG Ý LÀM NGƯỜI YÊU TỚ NHÉ
+
+From: Từ Duy-người yêu cậu bằng cả tái tim 💌
+`;
+
+let opened = false;
+
+function openLetter() {
+    if (opened) return;
+
+    opened = true;
+
+    document.getElementById("envelope")
+        .classList.add("open");
+
+    document.getElementById("hint")
+        .innerText = "Một lời nhắn dành riêng cho cậu ❤️";
+
+    let i = 0;
+    const message = document.getElementById("message");
+
+    function typeWriter() {
+        if (i < loveMessage.length) {
+            message.innerHTML +=
+                loveMessage.charAt(i) === "\n" ? "<br>" :
+                loveMessage.charAt(i);
+
+            i++;
+            setTimeout(typeWriter, 45);
+        }
+    }
+
+    setTimeout(typeWriter, 800);
+}
+
+// Hiệu ứng trái tim bay
+function createHeart() {
+    const heart = document.createElement("div");
+
+    heart.className = "floating-heart";
+    heart.innerHTML = "♥";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 25) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}
+
+setInterval(createHeart, 400);
+
+</script>
+
+</body>
+</html>
